@@ -58,3 +58,8 @@ Jenkins	CI/CD automation
 Docker	Containerization
 Python	Application runtime
 GitHub Webhooks	Automated pipeline triggers
+
+🖼️ Pipeline Output
+
+The pipeline response and visual result are available in:
+📂 */docs/image.png*
