@@ -1,65 +1,73 @@
-🚀 Jenkins CI/CD Pipeline Project
-🧩 Overview
+# 🚀 Jenkins CI/CD Pipeline Project
 
-A Jenkins pipeline that automatically builds, tests, and deploys a Python application using Docker.
-The entire process is triggered automatically via GitHub Webhooks.
+## 🧩 Overview
+A **Jenkins pipeline** that automatically **builds**, **tests**, and **deploys** a **Python application** using **Docker**.  
+The entire process is triggered automatically through **GitHub Webhooks**.
 
-⚙️ Infrastructure Setup
+---
 
-AWS EC2 Instance — Deployed Jenkins server
+## ⚙️ Infrastructure Setup
 
-GitHub Webhook — Configured for automatic pipeline triggers on code push
+- 🖥️ **AWS EC2 Instance** — Deployed Jenkins server  
+- 🔗 **GitHub Webhook** — Configured for automatic pipeline triggers on code push  
+- 🐳 **Docker** — Installed on the EC2 instance for containerized deployment  
 
-Docker — Installed on EC2 instance for containerized deployment
+---
 
-🛠️ What I Did
-1️⃣ Created a Dockerfile
+## 🛠️ What I Did
 
-Containerized a Python application
+### 🧱 1. Created a Dockerfile
+- Containerized a **Python application**
+- Used the **Python Slim** base image for efficiency  
+- Installed dependencies and ran the application
 
-Used the Python slim base image for lightweight efficiency
+---
 
-Installed dependencies and executed the app
+### ⚡ 2. Built a Jenkins Pipeline
 
-2️⃣ Built a Jenkins Pipeline
+The pipeline consists of **three stages**:
 
-The pipeline consists of three stages:
+#### 🔨 Build Stage
+- Builds a Docker image tagged as `foo:bar`
 
-🧱 Build Stage
+#### ✅ Test Stage
+- Verifies the Docker image was created successfully  
+- Fails automatically if the image does not exist
 
-Builds a Docker image tagged as foo:bar
+#### 🚀 Deploy Stage
+- Stops any existing running container  
+- Runs a new container on **port 8085**  
+- Container name: **foo-container**
 
-🧪 Test Stage
+---
 
-Verifies the image was created successfully
+### 🔁 3. Automated the Workflow
+- **GitHub Webhook** triggers the pipeline on each push  
+- Jenkins automatically runs **Build → Test → Deploy**  
+- Fully automated — no manual intervention required 💪  
 
-Fails automatically if the image does not exist
+---
 
-🚀 Deploy Stage
+## 💡 Technologies Used
 
-Stops any existing running container
+| Technology             | Purpose                     |
+|------------------------|-----------------------------|
+| 🖥️ **AWS EC2**         | Host Jenkins server         |
+| ⚙️ **Jenkins**         | CI/CD automation            |
+| 🐳 **Docker**          | Containerization            |
+| 🐍 **Python**          | Application runtime         |
+| 🔔 **GitHub Webhooks** | Automated pipeline triggers |
 
-Runs a new container on port 8085
+---
 
-Container name: foo-container
+## 🖼️ Pipeline Visualization
 
-3️⃣ Automated the Workflow
+The pipeline execution output and diagram can be found here:  
+📂 `docs/image.png`
 
-GitHub Webhook triggers the pipeline automatically on every push
+---
 
-Jenkins runs the build → test → deploy sequence
+## 📌 Example Command (for Deployment)
 
-Fully automated — no manual intervention needed ✅
-
-💡 Technologies Used
-Tool	Purpose
-AWS EC2	Hosts Jenkins
-Jenkins	CI/CD automation
-Docker	Containerization
-Python	Application runtime
-GitHub Webhooks	Automated pipeline triggers
-
-🖼️ Pipeline Output
-
-The pipeline response and visual result are available in:
-📂 */docs/image.png*
+```bash
+docker run -d -p 8085:8080 --name foo-container foo:bar
